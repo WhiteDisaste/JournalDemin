@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="53c0b66a9a11483fbaae025c557e7ba6" Name="Diagram1">
+        <EntityTypeShape EntityType="DeminJurnalsModel.Activity" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DeminJurnalsModel.Focus" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DeminJurnalsModel.Groups" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DeminJurnalsModel.Journal" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DeminJurnalsModel.Mark" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DeminJurnalsModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DeminJurnalsModel.VisGroups" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <AssociationConnector Association="DeminJurnalsModel.FK_Activity_Focus" ManuallyRouted="false" />
+        <AssociationConnector Association="DeminJurnalsModel.FK_Journal_Activity" ManuallyRouted="false" />
+        <AssociationConnector Association="DeminJurnalsModel.FK_Groups_VisGroups" ManuallyRouted="false" />
+        <AssociationConnector Association="DeminJurnalsModel.FK_Journal_Groups" ManuallyRouted="false" />
+        <AssociationConnector Association="DeminJurnalsModel.FK_Journal_Mark" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
