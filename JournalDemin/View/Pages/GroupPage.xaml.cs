@@ -25,8 +25,10 @@ namespace JournalDemin.View.Pages
         public GroupPage()
         {
             InitializeComponent();
+
             
-            txtViewGroup.ItemsSource = Connect.entities.Groups.ToList();
+                    
+            txtViewGroup.ItemsSource = Connect.entities.VisGroups.ToList();
 
         }
 
@@ -35,13 +37,27 @@ namespace JournalDemin.View.Pages
               string mes = "";
                 if (string.IsNullOrWhiteSpace(txtGroupName.Text))
                     mes += "Введите название группу";
-                if (string.IsNullOrWhiteSpace(txtGroupName.Text))
-                    mes += "Введите вид группу";
-
-                if(mes !="")
+                if (string.IsNullOrWhiteSpace(txtViewGroup.Text))
+                    mes += "Введите вид группу";            
+            if (mes !="")
                 {
-                    MessageBox.Show("Вы создали новую группу","",MessageBoxButton.OK,MessageBoxImage.Information);
-                }               
+                    MessageBox.Show("Вы создали новую группу", "Информация!", MessageBoxButton.OK,MessageBoxImage.Information);
+                }
+
+            Groups groups = new Groups()
+            {
+                Name = txtGroupName.Text,
+                VisGroups = txtViewGroup.SelectedItem as VisGroups               
+            };
+            Connect.entities.Groups.Add(groups);
+            Connect.entities.SaveChanges();
+            MessageBox.Show("запись добавлена");
+
+            txtGroupName.Text = "";
+            txtViewGroup.Text = "";
         }
+
+
+        
     }
 }

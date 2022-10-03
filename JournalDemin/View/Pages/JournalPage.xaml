@@ -7,7 +7,7 @@
       xmlns:local="clr-namespace:JournalDemin.View.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="JournalPage">
+      Title="JournalPage" IsVisibleChanged="Page_IsVisibleChanged">
 
     <Grid Background="White">
         <Grid.ColumnDefinitions>
@@ -16,14 +16,16 @@
         </Grid.ColumnDefinitions>
         <Image Margin="10 20" Source="/JournalDemin;component/Assets/Icons/Logo.png" VerticalAlignment="Top"/>
         <ListView Grid.Column="1" x:Name="CustomersList"
-                  FontSize="30"
+                  FontSize="30" SelectionChanged="CustomersList_SelectionChanged"
                   >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Группа" DisplayMemberBinding="{Binding Groups.Name}"/>
+                    <GridViewColumn Header="Вид группы" DisplayMemberBinding="{Binding Groups.VisGroups.Name}"/>
                     <GridViewColumn Header="Мероприятие" DisplayMemberBinding="{Binding Activity.Name}"/>
-                    <GridViewColumn Header="Оценка" DisplayMemberBinding="{Binding Mark.Volution}"/>
-                    <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding DateGr}"/>
+                    <GridViewColumn Header="Направленность мероприятия" DisplayMemberBinding="{Binding Activity.Focus.Name}"/>
+                    <GridViewColumn Header="Оценка" DisplayMemberBinding="{Binding Mark.Valuation}"/>
+                    <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding DateGr}" />
                 </GridView>
             </ListView.View>
 

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using JournalDemin.AppData;
+using JournalDemin.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,33 @@ namespace JournalDemin.View.Pages
         public ActivityPage()
         {
             InitializeComponent();
+
+            txtFocusActivity.ItemsSource = Connect.entities.Focus.ToList();
+        }
+
+        private void CreateActivityBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string mes = "";
+            if (string.IsNullOrWhiteSpace(txtActivityName.Text))
+                mes += "Введите название мероприятия";
+            
+            if (string.IsNullOrWhiteSpace(txtFocusActivity.Text))
+                mes += "Введите направленность мероприятия";
+            if (mes != "")
+            {
+                MessageBox.Show("Вы создали новое мероприятие", "Информация!", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            Activity activity = new Activity()
+            {
+                Name = txtActivityName.Text,
+                Focus = txtFocusActivity.SelectedItem as Focus
+            };
+            Connect.entities.Activity.Add(activity);
+            Connect.entities.SaveChanges();
+            MessageBox.Show("запись добавлена");
+
+            txtActivityName.Text = "";
+            txtFocusActivity.Text = "";
         }
     }
 }

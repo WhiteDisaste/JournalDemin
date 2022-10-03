@@ -1,0 +1,108 @@
+﻿<Page x:Class="JournalDemin.View.Pages.AccoutingPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:JournalDemin.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AccoutingPage">
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <DatePicker Grid.Column="1" Margin="20 20 0 0" Height="60" Name="dapicCalendar" Width="320"
+                    FontSize="18" materialDesign:HintAssist.Hint="Выбор даты"
+                    BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}"
+                         Style="{StaticResource MaterialDesignOutlinedDatePicker}" VerticalAlignment="Top" HorizontalAlignment="Left">
+            
+        </DatePicker>
+        
+        
+        <ComboBox 
+        Margin="20 20 0 0" 
+        Height="60" 
+        Name="txtActivityName" 
+        Width="320"
+        FontSize="18"
+        materialDesign:HintAssist.Hint="Название мероприятия"
+        BorderThickness="2"
+        BorderBrush="{DynamicResource MaterialDesignDivider}"
+        Style="{StaticResource MaterialDesignOutlinedComboBox}"
+        VerticalAlignment="Top" HorizontalAlignment="Left" SelectionChanged="txtFocusActivity_SelectionChanged">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <ComboBox 
+        Margin="20 120 0 0" 
+        Height="60" 
+        Name="txtFocusActivity" 
+        Width="320"
+        FontSize="18"
+        materialDesign:HintAssist.Hint="Направленность мероприятия"
+        BorderThickness="2"
+        BorderBrush="{DynamicResource MaterialDesignDivider}"
+        Style="{StaticResource MaterialDesignOutlinedComboBox}"
+        VerticalAlignment="Top" HorizontalAlignment="Left" SelectionChanged="txtFocusActivity_SelectionChanged">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <ComboBox 
+        Margin="20 220 0 0" 
+        Height="60" 
+        Name="txtMark" 
+        Width="320"
+        FontSize="18"
+        materialDesign:HintAssist.Hint="Оценка"
+        BorderThickness="2"
+        BorderBrush="{DynamicResource MaterialDesignDivider}"
+        Style="{StaticResource MaterialDesignOutlinedComboBox}"
+        VerticalAlignment="Top" HorizontalAlignment="Left">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Valuation}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        
+        
+        <ComboBox Grid.Column="1" Margin="20 120 0 0" Height="60" Name="txtGroupName" Width="320"
+                    FontSize="18" materialDesign:HintAssist.Hint="Название группы"
+                    BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}"
+                         Style="{StaticResource MaterialDesignOutlinedComboBox}" VerticalAlignment="Top" HorizontalAlignment="Left" SelectionChanged="txtViewGroup_SelectionChanged">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+
+        </ComboBox>
+        <ComboBox Grid.Column="1" Margin="20 220 0 0" Height="60" Name="txtViewGroup" Width="320"
+                    FontSize="18" materialDesign:HintAssist.Hint="Вид группы"
+                    BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}"
+                         Style="{StaticResource MaterialDesignOutlinedComboBox}" VerticalAlignment="Top" HorizontalAlignment="Left" SelectionChanged="txtViewGroup_SelectionChanged">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+
+        </ComboBox>
+        <Button Grid.Column="1" Margin="80 320 0 0" Name="CreateAccoutingBtn" Style="{StaticResource MaterialDesignFlatMidBgButton}"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                        Height="53" Width="200" materialDesign:ButtonAssist.CornerRadius="10"
+                        FontSize="18" Content="Создать"  HorizontalAlignment="Left" Click="CreateAccoutingBtn_Click" />
+
+       
+    </Grid>
+</Page>

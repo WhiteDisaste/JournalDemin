@@ -75,6 +75,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="View\Pages\AccoutingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\ActivityPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -131,6 +135,9 @@
     </Compile>
     <Compile Include="Model\VisGroups.cs">
       <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\AccoutingPage.xaml.cs">
+      <DependentUpon>AccoutingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\ActivityPage.xaml.cs">
       <DependentUpon>ActivityPage.xaml</DependentUpon>

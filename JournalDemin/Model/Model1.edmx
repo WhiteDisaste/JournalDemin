@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище DeminJurnalsModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище DeminJurnalsModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Activity">
           <Key>
             <PropertyRef Name="Id" />
@@ -151,38 +151,66 @@
             <End Role="Journal" EntitySet="Journal" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DeminJurnalsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DeminJurnalsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Activity" EntityType="DeminJurnalsModel.Activity" />
+          <EntitySet Name="Focus" EntityType="DeminJurnalsModel.Focus" />
+          <EntitySet Name="Groups" EntityType="DeminJurnalsModel.Groups" />
+          <EntitySet Name="Journal" EntityType="DeminJurnalsModel.Journal" />
+          <EntitySet Name="Mark" EntityType="DeminJurnalsModel.Mark" />
+          <EntitySet Name="sysdiagrams" EntityType="DeminJurnalsModel.sysdiagrams" />
+          <EntitySet Name="VisGroups" EntityType="DeminJurnalsModel.VisGroups" />
+          <AssociationSet Name="FK_Activity_Focus" Association="DeminJurnalsModel.FK_Activity_Focus">
+            <End Role="Focus" EntitySet="Focus" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Journal_Activity" Association="DeminJurnalsModel.FK_Journal_Activity">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="Journal" EntitySet="Journal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groups_VisGroups" Association="DeminJurnalsModel.FK_Groups_VisGroups">
+            <End Role="VisGroups" EntitySet="VisGroups" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Journal_Groups" Association="DeminJurnalsModel.FK_Journal_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Journal" EntitySet="Journal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Journal_Mark" Association="DeminJurnalsModel.FK_Journal_Mark">
+            <End Role="Mark" EntitySet="Mark" />
+            <End Role="Journal" EntitySet="Journal" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Activity">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IdFocus" Type="Int32" />
-          <NavigationProperty Name="Focus" Relationship="Self.FK_Activity_Focus" FromRole="Activity" ToRole="Focus" />
-          <NavigationProperty Name="Journal" Relationship="Self.FK_Journal_Activity" FromRole="Activity" ToRole="Journal" />
+          <NavigationProperty Name="Focus" Relationship="DeminJurnalsModel.FK_Activity_Focus" FromRole="Activity" ToRole="Focus" />
+          <NavigationProperty Name="Journal" Relationship="DeminJurnalsModel.FK_Journal_Activity" FromRole="Activity" ToRole="Journal" />
         </EntityType>
         <EntityType Name="Focus">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Activity" Relationship="Self.FK_Activity_Focus" FromRole="Focus" ToRole="Activity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Activity" Relationship="DeminJurnalsModel.FK_Activity_Focus" FromRole="Focus" ToRole="Activity" />
         </EntityType>
         <EntityType Name="Groups">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IdGroup" Type="Int32" />
-          <NavigationProperty Name="VisGroups" Relationship="Self.FK_Groups_VisGroups" FromRole="Groups" ToRole="VisGroups" />
-          <NavigationProperty Name="Journal" Relationship="Self.FK_Journal_Groups" FromRole="Groups" ToRole="Journal" />
+          <NavigationProperty Name="VisGroups" Relationship="DeminJurnalsModel.FK_Groups_VisGroups" FromRole="Groups" ToRole="VisGroups" />
+          <NavigationProperty Name="Journal" Relationship="DeminJurnalsModel.FK_Journal_Groups" FromRole="Groups" ToRole="Journal" />
         </EntityType>
         <EntityType Name="Journal">
           <Key>
@@ -193,9 +221,9 @@
           <Property Name="IdActivity" Type="Int32" />
           <Property Name="DateGr" Type="DateTime" Precision="0" />
           <Property Name="IdGroups" Type="Int32" />
-          <NavigationProperty Name="Activity" Relationship="Self.FK_Journal_Activity" FromRole="Journal" ToRole="Activity" />
-          <NavigationProperty Name="Groups" Relationship="Self.FK_Journal_Groups" FromRole="Journal" ToRole="Groups" />
-          <NavigationProperty Name="Mark" Relationship="Self.FK_Journal_Mark" FromRole="Journal" ToRole="Mark" />
+          <NavigationProperty Name="Activity" Relationship="DeminJurnalsModel.FK_Journal_Activity" FromRole="Journal" ToRole="Activity" />
+          <NavigationProperty Name="Groups" Relationship="DeminJurnalsModel.FK_Journal_Groups" FromRole="Journal" ToRole="Groups" />
+          <NavigationProperty Name="Mark" Relationship="DeminJurnalsModel.FK_Journal_Mark" FromRole="Journal" ToRole="Mark" />
         </EntityType>
         <EntityType Name="Mark">
           <Key>
@@ -203,13 +231,13 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Valuation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Journal" Relationship="Self.FK_Journal_Mark" FromRole="Mark" ToRole="Journal" />
+          <NavigationProperty Name="Journal" Relationship="DeminJurnalsModel.FK_Journal_Mark" FromRole="Mark" ToRole="Journal" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="principal_id" Type="Int32" Nullable="false" />
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
@@ -220,12 +248,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Groups" Relationship="Self.FK_Groups_VisGroups" FromRole="VisGroups" ToRole="Groups" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Groups" Relationship="DeminJurnalsModel.FK_Groups_VisGroups" FromRole="VisGroups" ToRole="Groups" />
         </EntityType>
         <Association Name="FK_Activity_Focus">
-          <End Role="Focus" Type="Self.Focus" Multiplicity="0..1" />
-          <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+          <End Type="DeminJurnalsModel.Focus" Role="Focus" Multiplicity="0..1" />
+          <End Type="DeminJurnalsModel.Activity" Role="Activity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Focus">
               <PropertyRef Name="Id" />
@@ -236,8 +264,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Journal_Activity">
-          <End Role="Activity" Type="Self.Activity" Multiplicity="0..1" />
-          <End Role="Journal" Type="Self.Journal" Multiplicity="*" />
+          <End Type="DeminJurnalsModel.Activity" Role="Activity" Multiplicity="0..1" />
+          <End Type="DeminJurnalsModel.Journal" Role="Journal" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Activity">
               <PropertyRef Name="Id" />
@@ -248,8 +276,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Groups_VisGroups">
-          <End Role="VisGroups" Type="Self.VisGroups" Multiplicity="0..1" />
-          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <End Type="DeminJurnalsModel.VisGroups" Role="VisGroups" Multiplicity="0..1" />
+          <End Type="DeminJurnalsModel.Groups" Role="Groups" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="VisGroups">
               <PropertyRef Name="Id" />
@@ -260,8 +288,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Journal_Groups">
-          <End Role="Groups" Type="Self.Groups" Multiplicity="0..1" />
-          <End Role="Journal" Type="Self.Journal" Multiplicity="*" />
+          <End Type="DeminJurnalsModel.Groups" Role="Groups" Multiplicity="0..1" />
+          <End Type="DeminJurnalsModel.Journal" Role="Journal" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Groups">
               <PropertyRef Name="Id" />
@@ -272,8 +300,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Journal_Mark">
-          <End Role="Mark" Type="Self.Mark" Multiplicity="0..1" />
-          <End Role="Journal" Type="Self.Journal" Multiplicity="*" />
+          <End Type="DeminJurnalsModel.Mark" Role="Mark" Multiplicity="0..1" />
+          <End Type="DeminJurnalsModel.Journal" Role="Journal" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Mark">
               <PropertyRef Name="Id" />
@@ -283,36 +311,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DeminJurnalsEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Activity" EntityType="Self.Activity" />
-          <EntitySet Name="Focus" EntityType="Self.Focus" />
-          <EntitySet Name="Groups" EntityType="Self.Groups" />
-          <EntitySet Name="Journal" EntityType="Self.Journal" />
-          <EntitySet Name="Mark" EntityType="Self.Mark" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="VisGroups" EntityType="Self.VisGroups" />
-          <AssociationSet Name="FK_Activity_Focus" Association="Self.FK_Activity_Focus">
-            <End Role="Focus" EntitySet="Focus" />
-            <End Role="Activity" EntitySet="Activity" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Journal_Activity" Association="Self.FK_Journal_Activity">
-            <End Role="Activity" EntitySet="Activity" />
-            <End Role="Journal" EntitySet="Journal" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Groups_VisGroups" Association="Self.FK_Groups_VisGroups">
-            <End Role="VisGroups" EntitySet="VisGroups" />
-            <End Role="Groups" EntitySet="Groups" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Journal_Groups" Association="Self.FK_Journal_Groups">
-            <End Role="Groups" EntitySet="Groups" />
-            <End Role="Journal" EntitySet="Journal" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Journal_Mark" Association="Self.FK_Journal_Mark">
-            <End Role="Mark" EntitySet="Mark" />
-            <End Role="Journal" EntitySet="Journal" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -321,64 +320,64 @@
           <EntitySetMapping Name="Activity">
             <EntityTypeMapping TypeName="DeminJurnalsModel.Activity">
               <MappingFragment StoreEntitySet="Activity">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="IdFocus" ColumnName="IdFocus" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Focus">
             <EntityTypeMapping TypeName="DeminJurnalsModel.Focus">
               <MappingFragment StoreEntitySet="Focus">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Groups">
             <EntityTypeMapping TypeName="DeminJurnalsModel.Groups">
               <MappingFragment StoreEntitySet="Groups">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="IdGroup" ColumnName="IdGroup" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Journal">
             <EntityTypeMapping TypeName="DeminJurnalsModel.Journal">
               <MappingFragment StoreEntitySet="Journal">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="IdMark" ColumnName="IdMark" />
-                <ScalarProperty Name="IdActivity" ColumnName="IdActivity" />
-                <ScalarProperty Name="DateGr" ColumnName="DateGr" />
                 <ScalarProperty Name="IdGroups" ColumnName="IdGroups" />
+                <ScalarProperty Name="DateGr" ColumnName="DateGr" />
+                <ScalarProperty Name="IdActivity" ColumnName="IdActivity" />
+                <ScalarProperty Name="IdMark" ColumnName="IdMark" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mark">
             <EntityTypeMapping TypeName="DeminJurnalsModel.Mark">
               <MappingFragment StoreEntitySet="Mark">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Valuation" ColumnName="Valuation" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="DeminJurnalsModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="VisGroups">
             <EntityTypeMapping TypeName="DeminJurnalsModel.VisGroups">
               <MappingFragment StoreEntitySet="VisGroups">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

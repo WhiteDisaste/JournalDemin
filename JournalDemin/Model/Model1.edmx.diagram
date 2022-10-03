@@ -5,18 +5,18 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="53c0b66a9a11483fbaae025c557e7ba6" Name="Diagram1">
-        <EntityTypeShape EntityType="DeminJurnalsModel.Activity" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DeminJurnalsModel.Focus" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DeminJurnalsModel.Groups" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DeminJurnalsModel.Journal" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="DeminJurnalsModel.Mark" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DeminJurnalsModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DeminJurnalsModel.VisGroups" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
-        <AssociationConnector Association="DeminJurnalsModel.FK_Activity_Focus" ManuallyRouted="false" />
-        <AssociationConnector Association="DeminJurnalsModel.FK_Journal_Activity" ManuallyRouted="false" />
-        <AssociationConnector Association="DeminJurnalsModel.FK_Groups_VisGroups" ManuallyRouted="false" />
-        <AssociationConnector Association="DeminJurnalsModel.FK_Journal_Groups" ManuallyRouted="false" />
-        <AssociationConnector Association="DeminJurnalsModel.FK_Journal_Mark" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DeminJurnalsModel.Activity" Width="1.5" PointX="3" PointY="6.875" />
+        <EntityTypeShape EntityType="DeminJurnalsModel.Focus" Width="1.5" PointX="0.75" PointY="7.125" />
+        <EntityTypeShape EntityType="DeminJurnalsModel.Groups" Width="1.5" PointX="3" PointY="1.25" />
+        <EntityTypeShape EntityType="DeminJurnalsModel.Journal" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="DeminJurnalsModel.Mark" Width="1.5" PointX="3" PointY="4.625" />
+        <EntityTypeShape EntityType="DeminJurnalsModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="4.75" />
+        <EntityTypeShape EntityType="DeminJurnalsModel.VisGroups" Width="1.5" PointX="0.75" PointY="1.375" />
+        <AssociationConnector Association="DeminJurnalsModel.FK_Activity_Focus" />
+        <AssociationConnector Association="DeminJurnalsModel.FK_Journal_Activity" />
+        <AssociationConnector Association="DeminJurnalsModel.FK_Groups_VisGroups" />
+        <AssociationConnector Association="DeminJurnalsModel.FK_Journal_Groups" />
+        <AssociationConnector Association="DeminJurnalsModel.FK_Journal_Mark" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

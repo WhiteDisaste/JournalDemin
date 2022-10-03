@@ -1,4 +1,6 @@
-﻿using System;
+﻿using JournalDemin.AppData;
+using JournalDemin.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,24 @@ namespace JournalDemin.View.Pages
         public JournalPage()
         {
             InitializeComponent();
+            CustomersList.ItemsSource = Connect.entities.VisGroups.ToList();
+            CustomersList.ItemsSource = Connect.entities.Focus.ToList();
+            CustomersList.ItemsSource = Connect.entities.Mark.ToList();
+        }
+
+        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            
+                CustomersList.ItemsSource = Connect.entities.Journal.ToList();
+               
+            
+        }
+
+        private void CustomersList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Journal journal = (Journal)CustomersList.SelectedItem;
+
+            
         }
     }
 }

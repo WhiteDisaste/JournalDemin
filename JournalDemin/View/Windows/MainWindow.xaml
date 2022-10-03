@@ -7,10 +7,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JournalDemin"
         mc:Ignorable="d"
-        Title="MainWindow" ResizeMode="NoResize" Width="1450" Height="900" WindowStyle="None" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" ResizeMode="NoResize" Width="1200" Height="750" WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid Height="60" VerticalAlignment="Top" Background="#FF9C27B0">
-            <Image Source="/JournalDemin;component/Assets/Icons/Logo.png" Margin="20 0 0 0" HorizontalAlignment="Left"/>
+            
             <TextBlock Text="Детский сад 'Солнышко'" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" FontFamily="Champagne &amp; Limousines" />
             <Button x:Name="EixtBtn" HorizontalAlignment="Right" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" Click="EixtBtn_Click">
                 <materialDesign:PackIcon Kind="Power"/>
@@ -29,6 +29,9 @@
                 </TabItem>
                 <TabItem Header="Журнал">
                     <Frame  Source="/View/Pages/JournalPage.xaml" />
+                </TabItem>
+                <TabItem Header="Учет">
+                    <Frame  Source="/View/Pages/AccoutingPage.xaml" />
                 </TabItem>
 
             </dragablz:TabablzControl>
