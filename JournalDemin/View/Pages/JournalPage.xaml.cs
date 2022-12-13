@@ -31,18 +31,13 @@ namespace JournalDemin.View.Pages
         }
 
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            
-                CustomersList.ItemsSource = Connect.entities.Journal.ToList();
-               
-            
+        {            
+                CustomersList.ItemsSource = Connect.entities.Journal.ToList();                       
         }
 
         private void CustomersList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Journal journal = (Journal)CustomersList.SelectedItem;
-
-            
+            Journal journal = (Journal)CustomersList.SelectedItem;           
         }
     }
 }
